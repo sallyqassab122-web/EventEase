@@ -1,0 +1,25 @@
+﻿@page "/profile"
+@using EventEase_App.Services
+@rendermode InteractiveServer
+@inject UserSessionService Session
+@inject Attendance AttendanceService
+
+<h3>Profile</h3>
+
+<p>Welcome, @Session.UserName!</p>
+<button class="btn btn-primary" @onclick="MarkAttendance">
+    Mark Attendance
+</button>
+<h3 class="mt-4">Attendance List</h3>
+<ul>
+    @foreach (var attendance in AttendanceService.Attendances)
+    {
+        <li>@attendance</li>
+    }
+</ul>
+@code{
+    private void MarkAttendance()
+    {
+        AttendanceService.Attendances.Add(Session.UserName);
+    }
+}

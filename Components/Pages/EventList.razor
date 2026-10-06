@@ -1,0 +1,17 @@
+﻿@page "/events"
+@using EventEase_App.Models
+
+<h1>Events</h1>
+
+@foreach (var evt in Events)
+{
+    <EventCard Event="evt"  @key="evt.Id"/>
+}
+
+@code {
+    private List<Event> Events = new()
+    {
+        new() { Id = 1, Title = "Tech Conference" },
+        new() { Id = 2, Title = "Startup Meetup" }
+    };
+}

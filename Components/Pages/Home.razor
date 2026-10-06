@@ -1,0 +1,76 @@
+﻿@page "/"
+@using EventEase_App.Models
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h3>Event Editor</h3>
+
+<EditForm Model="@CurrentEvent" FormName="eventName" OnValidSubmit="SubmitEvent">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Event Title</label>
+        <InputText class="form-control"
+                   @bind-Value="CurrentEvent.Title" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Location</label>
+        <InputText class="form-control"
+                   @bind-Value="CurrentEvent.Location" />
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <InputText class="form-control"
+                   @bind-Value="CurrentEvent.Description" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" @onclick="SubmitEvent">Submit</button>
+
+</EditForm>
+<h3>Event List</h3>
+
+@foreach (var eventItem in Events)
+{
+    <EventCard @key = "eventItem.Id" Event="eventItem" />
+}
+
+<hr />
+
+<h3>Preview</h3>
+
+<EventCard Event="CurrentEvent" />
+
+@code {
+    private List<Event> Events = new();
+    private Event CurrentEvent = new()
+    {
+        Title = "Tech Conference 2027",
+        Date = new DateTime(2027, 5, 15),
+        Location = "Beirut"
+    };
+protected override void OnInitialized()
+{
+    for (int i = 1; i <= 1000; i++)
+    {
+        Events.Add(new Event
+        {
+            Id = i,
+            Title = $"Event {i}",
+            Date = DateTime.Now.AddDays(i),
+            Location = $"Beirut {i}",
+            Description = $"Description for event {i}"
+        });
+    }
+}
+
+
+private void SubmitEvent()
+    {
+        
+        
+    }
+}

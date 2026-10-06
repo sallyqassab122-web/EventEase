@@ -1,0 +1,26 @@
+﻿
+
+@page "/events/{Id:int}/register"
+
+<h1>Registration</h1>
+
+<p>Registering for event @Id</p>
+
+    
+    <button type="submit" class="btn btn-primary" @onclick="SubmitEvent">Submit</button>
+
+
+<NavLink href="@($"/events/{Id}")">
+    Back to Details
+</NavLink>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+private async Task SubmitEvent()
+    {
+        // TODO: implement actual submit logic (call API, validation, navigation, etc.)
+        await Task.CompletedTask;
+    }
+}

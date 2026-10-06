@@ -1,0 +1,35 @@
+﻿@page "/attendance"
+@using EventEase_App.Models
+
+<h3>Attendance Tracker</h3>
+
+@foreach (var a in Attendances)
+{
+    <div class="form-check">
+        <input class="form-check-input"
+               type="checkbox"
+               @bind="a.IsAttending" />
+
+        <label class="form-check-label">
+            @a.Name
+        </label>
+    </div>
+}
+
+<hr />
+
+<p>
+    Total Attendees:
+    @Attendances.Count(a => a.IsAttending)
+</p>
+
+@code {
+
+    private List<Attendance> Attendances = new()
+    {
+        new() { Id = 1, Name = "Sali" },
+        new() { Id = 2, Name = "Ali" },
+        new() { Id = 3, Name = "Maya" }
+    };
+
+}

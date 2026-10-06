@@ -1,0 +1,41 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using EventEase_App.Models
+
+@page "/events/{Id:int}"
+
+
+@if (SelectedEvent is null)
+{
+    <div class="alert alert-warning">
+        Event not found.
+    </div>
+}
+else
+{
+    <h3>@SelectedEvent.Title</h3>
+    <p>@SelectedEvent.Location</p>
+
+    <NavLink href="@($"/events/{Id}/register")"
+         class="btn btn-success">
+    Register
+</NavLink>
+}
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Event? SelectedEvent;
+
+    protected override void OnParametersSet()
+    {
+        var events = new List<Event>
+      {     
+          new() {Id=1,Title="tech conference", Location="beirut"},
+          new() {Id=2,Title="startup Meet", Location="Sidon"}
+      };
+        SelectedEvent = events.FirstOrDefault(e => e.Id == Id);
+    }
+    }
+    

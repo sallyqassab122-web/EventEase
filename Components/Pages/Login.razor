@@ -1,0 +1,24 @@
+﻿@page "/login"
+@using EventEase_App.Services
+@inject NavigationManager Navigation
+@inject UserSessionService Session
+
+<h3>Login</h3>
+
+<input class="form-control"
+       @bind="name" />
+
+<button class="btn btn-primary mt-2"
+        @onclick="SaveUser">
+    Save
+</button>
+
+@code{
+    private string name = "";
+
+    private void SaveUser()
+    {
+        Session.UserName = name;
+        Navigation.NavigateTo("/profile");
+    }
+}

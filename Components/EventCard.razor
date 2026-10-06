@@ -1,0 +1,33 @@
+﻿@using EventEase_App.Models
+@using Microsoft.AspNetCore.Components
+
+<div class="card shadow-sm h-100">
+    <div class="card-body">
+        <h5 class="card-title">@Event.Title</h5>
+
+        <p class="text-muted mb-1">
+            📅 @Event.Date
+        </p>
+
+        <p class="text-muted mb-2">
+            📍 @Event.Location
+        </p>
+
+        <p class="card-text">
+            @Event.Description
+        </p>
+
+    </div>
+</div>
+
+<NavLink href="@($"/events/{Event.Id}")"
+         class="btn btn-primary">
+    View Details
+</NavLink>
+
+
+@code {
+    [Parameter]
+    public Event Event { get; set; } = default!;
+}
+
